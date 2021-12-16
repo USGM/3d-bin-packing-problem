@@ -1,3 +1,6 @@
-/*.egg-info/
+**/*.egg-info/
 /dist
 /build
+/.eggs
+/MANIFEST
+/*.whl
