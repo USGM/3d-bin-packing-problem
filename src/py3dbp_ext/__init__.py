@@ -5,4 +5,4 @@ from .bin import Bin
 from .item import Item
 from .packer import Packer
 
-VERSION = "0.0.1"
+__version__ = "0.0.1"
