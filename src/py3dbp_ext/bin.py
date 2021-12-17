@@ -1,9 +1,15 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+from decimal import InvalidOperation, Decimal
+import logging
+
 from .auxiliary_methods import intersect
 from .constants import DEFAULT_NUMBER_OF_DECIMALS, RotationType
 from .utils import set_to_decimal
+
+
+log = logging.getLogger(__name__)
 
 
 class Bin:
@@ -46,8 +52,13 @@ class Bin:
         for item in self.items:
             total_filling_volume += item.get_volume()
 
-        total_filling_ratio = total_filling_volume / self.get_volume()
-        return set_to_decimal(total_filling_ratio, self.number_of_decimals)
+        try:
+            total_filling_ratio = total_filling_volume / self.get_volume()
+        except InvalidOperation as err:
+            log.warning("failed to calc filling ration, returning 1.0: %s", err)
+            return Decimal("1.0")
+        else:
+            return set_to_decimal(total_filling_ratio, self.number_of_decimals)
 
     def can_hold_item_with_rotation(self, item, pivot):
         """Evaluate whether one item can be placed into bin with all optional orientations.
