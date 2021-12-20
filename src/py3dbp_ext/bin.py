@@ -55,7 +55,7 @@ class Bin:
         try:
             total_filling_ratio = total_filling_volume / self.get_volume()
         except InvalidOperation as err:
-            log.warning("failed to calc filling ration, returning 1.0: %s", err)
+            log.warning("failed to calc filling ratio, returning 1.0: %s", err)
             return Decimal("1.0")
         else:
             return set_to_decimal(total_filling_ratio, self.number_of_decimals)
