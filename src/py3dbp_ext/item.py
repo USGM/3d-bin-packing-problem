@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-from .constants import START_POSITION, DEFAULT_NUMBER_OF_DECIMALS, RotationType
+from .constants import DEFAULT_NUMBER_OF_DECIMALS, START_POSITION, RotationType
 from .utils import set_to_decimal
 
 
@@ -60,3 +60,6 @@ class Item:
 
     def __str__(self):
         return self.string()
+
+    def __repr__(self):
+        return "<%s>" % self
